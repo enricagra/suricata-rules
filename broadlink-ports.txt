@@ -1,2 +1,11 @@
 pass udp [172.16.0.0/24, any] any -> any 80,443,53,123 (msg:"Allow Broadlink UDP Traffic (Discovery, Secure, DNS, NTP)"; sid:4000100;)
 pass tcp [172.16.0.0/24, any] any -> any 7474 (msg:"Allow Broadlink TCP Traffic (Cloud Communication)"; sid:4000101;)
+
+# Allow UDP communication on Broadlink-specific ports
+pass udp any any -> any 80 (msg:"Allow Broadlink UDP Discovery"; sid:2000001;)
+pass udp any any -> any 443 (msg:"Allow Broadlink Secure UDP Traffic"; sid:2000002;)
+pass udp any any -> any 53 (msg:"Allow Broadlink DNS Lookups"; sid:2000003;)
+pass udp any any -> any 123 (msg:"Allow Broadlink NTP Synchronization"; sid:2000004;)
+
+# Allow TCP communication to Broadlink cloud services
+pass tcp any any -> any 7474 (msg:"Allow Broadlink Cloud Communication"; sid:2000005;)
