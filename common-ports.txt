@@ -1,0 +1,5 @@
+# Allow common TCP ports
+pass tcp any any -> any 20,21,22,23,25,80,110,143,443,465,993,995,3306,3389 (msg:"Allow Safe TCP Ports"; sid:500001;)
+
+# Allow common UDP ports
+pass udp any any -> any 53,123 (msg:"Allow Safe UDP Ports"; sid:500002;)
