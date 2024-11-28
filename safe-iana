@@ -1,0 +1,49 @@
+# =============================
+# Core Protocols
+# =============================
+
+# Allow ICMP for diagnostics (ping, traceroute)
+pass icmp any any -> any any (msg:"Allow ICMP (Diagnostics)"; sid:900001;)
+
+# Allow TCP traffic
+pass tcp any any -> any any (msg:"Allow TCP Traffic (Browsing/Gaming/Streaming)"; sid:900002;)
+
+# Allow UDP traffic
+pass udp any any -> any any (msg:"Allow UDP Traffic (Gaming/Streaming/Video Calls)"; sid:900003;)
+
+# =============================
+# Secure Communications
+# =============================
+
+# Allow IPv6 Encapsulation
+pass ip any any -> any any (ip_proto:41; msg:"Allow IPv6 Encapsulation"; sid:900004;)
+
+# Allow ESP (IPsec VPNs)
+pass ip any any -> any any (ip_proto:50; msg:"Allow IPsec ESP"; sid:900005;)
+
+# Allow AH (IPsec VPNs)
+pass ip any any -> any any (ip_proto:51; msg:"Allow IPsec AH"; sid:900006;)
+
+# =============================
+# Gaming, Video Calls, and Streaming
+# =============================
+
+# Allow GRE (Tunneling Protocol)
+pass ip any any -> any any (ip_proto:47; msg:"Allow GRE (Tunneling)"; sid:900007;)
+
+# Allow SCTP (Real-time Communication)
+pass ip any any -> any any (ip_proto:132; msg:"Allow SCTP (Real-time Communication)"; sid:900008;)
+
+# =============================
+# Specific Port Ranges
+# =============================
+
+# Gaming UDP Ports
+pass udp any any -> any 3074,3478:3480,27000:27100,49152:65535 (msg:"Allow Gaming UDP Ports"; sid:900009;)
+
+# Gaming TCP Ports
+pass tcp any any -> any 27000:27100 (msg:"Allow Gaming TCP Ports"; sid:900010;)
+
+# Video Call and Streaming Ports
+pass udp any any -> any 3478:3480,19302:19309 (msg:"Allow Video Call UDP Ports"; sid:900011;)
+pass tcp any any -> any 443,80,3478:3480 (msg:"Allow Video Call TCP Ports"; sid:900012;)
