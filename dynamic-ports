@@ -1,0 +1,10 @@
+# Allow Dynamic UDP Ports (49152–65535)
+pass udp any any -> any 49152:65535 (msg:"Allow Dynamic UDP Ports (49152–65535)"; sid:800101;)
+
+# Allow Dynamic TCP Ports (49152–65535)
+pass tcp any any -> any 49152:65535 (msg:"Allow Dynamic TCP Ports (49152–65535)"; sid:800102;)
+
+# Allow ICMP Traffic
+pass icmp any any -> any any (itype:8; msg:"Allow ICMP Echo Request"; sid:800201;)
+pass icmp any any -> any any (itype:0; msg:"Allow ICMP Echo Reply"; sid:800202;)
+pass icmp any any -> any any (itype:11; msg:"Allow ICMP Time Exceeded"; sid:800203;)
