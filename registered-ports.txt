@@ -8,15 +8,3 @@ alert udp any any -> any 1024:49151 (msg:"High-volume UDP traffic on Registered 
 
 # 3. Game-Related UDP Traffic (Lag Issues, Smaller Packets < 1500 bytes)
 alert udp any any -> any 1024:49151 (msg:"Potential Game Traffic Detected"; dsize:<1500; sid:2000005; rev:1;)
-
-# 4. Limit the Rate of Alerts for Excessive Connections (Threshold: 10 connections/60 seconds)
-alert tcp any any -> any 1024:49151 (msg:"Excessive Connections to Registered Ports"; threshold:type limit, track by_src, count 10, seconds 60; sid:2000006; rev:1;)
-alert udp any any -> any 1024:49151 (msg:"Excessive UDP Connections to Registered Ports"; threshold:type limit, track by_src, count 10, seconds 60; sid:2000007; rev:1;)
-
-# 5. Log Only Traffic (If No Immediate Blocking Is Desired)
-pass tcp any any -> any 1024:49151 (msg:"Logging TCP Traffic on Registered Ports"; sid:2000008; rev:1;)
-pass udp any any -> any 1024:49151 (msg:"Logging UDP Traffic on Registered Ports"; sid:2000009; rev:1;)
-
-# 6. Block Excessive TCP/UDP Traffic on Registered Ports (Aggressive Mitigation)
-drop tcp any any -> any 1024:49151 (msg:"Blocked TCP Traffic on Registered Ports"; sid:2000010; rev:1;)
-drop udp any any -> any 1024:49151 (msg:"Blocked UDP Traffic on Registered Ports"; sid:2000011; rev:1;)
