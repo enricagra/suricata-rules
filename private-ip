@@ -1,0 +1,11 @@
+# Allow Private IPv4 Addresses
+pass ip 10.0.0.0/8 any -> 10.0.0.0/8 any (msg:"Allow Private IPv4 Range 10.0.0.0/8"; sid:1000001;)
+pass ip 172.16.0.0/12 any -> 172.16.0.0/12 any (msg:"Allow Private IPv4 Range 172.16.0.0/12"; sid:1000002;)
+pass ip 192.168.0.0/16 any -> 192.168.0.0/16 any (msg:"Allow Private IPv4 Range 192.168.0.0/16"; sid:1000003;)
+
+# Allow Private IPv6 Addresses
+pass ip fc00::/7 any -> fc00::/7 any (msg:"Allow Private IPv6 Range fc00::/7"; sid:1000004;)
+
+# Optional: Allow Link-Local Traffic
+pass ip 169.254.0.0/16 any -> 169.254.0.0/16 any (msg:"Allow IPv4 Link-Local Range 169.254.0.0/16"; sid:1000005;)
+pass ip fe80::/10 any -> fe80::/10 any (msg:"Allow IPv6 Link-Local Range fe80::/10"; sid:1000006;)
