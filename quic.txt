@@ -1,0 +1,20 @@
+# Allow QUIC over UDP (default port 443)
+pass udp any any -> any 443 (msg:"Allow QUIC Traffic (UDP port 443)"; sid:1000100;)
+
+# Allow QUIC for Private IPv4 Addresses
+pass udp 10.0.0.0/8 any -> 10.0.0.0/8 443 (msg:"Allow QUIC for Private IPv4 Range 10.0.0.0/8"; sid:1000011;)
+pass udp 172.16.0.0/12 any -> 172.16.0.0/12 443 (msg:"Allow QUIC for Private IPv4 Range 172.16.0.0/12"; sid:1000012;)
+pass udp 192.168.0.0/16 any -> 192.168.0.0/16 443 (msg:"Allow QUIC for Private IPv4 Range 192.168.0.0/16"; sid:1000013;)
+
+# Allow QUIC for Private IPv6 Addresses
+pass udp fc00::/7 any -> fc00::/7 443 (msg:"Allow QUIC for Private IPv6 Range fc00::/7"; sid:1000014;)
+
+# Optional: Allow QUIC for Link-Local Addresses
+pass udp 169.254.0.0/16 any -> 169.254.0.0/16 443 (msg:"Allow QUIC for IPv4 Link-Local Range 169.254.0.0/16"; sid:1000015;)
+pass udp fe80::/10 any -> fe80::/10 443 (msg:"Allow QUIC for IPv6 Link-Local Range fe80::/10"; sid:1000016;)
+
+# Optional: Allow all UDP traffic for Private IP Ranges
+pass udp 10.0.0.0/8 any -> 10.0.0.0/8 any (msg:"Allow UDP for Private IPv4 Range 10.0.0.0/8"; sid:1000021;)
+pass udp 172.16.0.0/12 any -> 172.16.0.0/12 any (msg:"Allow UDP for Private IPv4 Range 172.16.0.0/12"; sid:1000022;)
+pass udp 192.168.0.0/16 any -> 192.168.0.0/16 any (msg:"Allow UDP for Private IPv4 Range 192.168.0.0/16"; sid:1000023;)
+pass udp fc00::/7 any -> fc00::/7 any (msg:"Allow UDP for Private IPv6 Range fc00::/7"; sid:1000024;)
