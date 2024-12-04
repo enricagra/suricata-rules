@@ -46,4 +46,4 @@ pass tcp any any -> any 27000:27100 (msg:"Allow Gaming TCP Ports"; sid:900010;)
 
 # Video Call and Streaming Ports
 pass udp any any -> any 3478:3480,19302:19309 (msg:"Allow Video Call UDP Ports"; sid:900011;)
-pass tcp any any -> any 443,80,3478:3480 (msg:"Allow Video Call TCP Ports"; sid:900012;)
+pass tcp any any -> any 443,80,8080,3478:3480 (msg:"Allow Video Call TCP Ports"; sid:900012;)
