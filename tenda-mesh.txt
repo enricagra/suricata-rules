@@ -1,0 +1,1 @@
+pass ip 172.16.0.0/24 any -> any any (msg:"Allow traffic from Tenda Mesh subnet"; sid:100001; rev:1;)
