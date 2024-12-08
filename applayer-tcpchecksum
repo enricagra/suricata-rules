@@ -1,0 +1,1 @@
+pass tcp any any -> any any (msg:"Allow TCP with invalid checksum and app-layer"; app-layer-protocol: http, tls; checksum: none; sid:1000001; rev:1;)
